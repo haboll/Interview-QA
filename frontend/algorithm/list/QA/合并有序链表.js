@@ -5,7 +5,7 @@
 //     this.next = next === undefined ? null : next;
 // }
 
-const { LinkListNode, LinkList } = require('../index.js');
+const { ListNode, LinkList } = require('../index.js');
 
 const l1 = new LinkList().init([1, 2, 4]);
 
@@ -38,7 +38,7 @@ var mergeTwoLists = function (l1, l2) {
     } else if (!l2) {
         return l1;
     } else {
-        let resultLinkList = new LinkList().init([-1]); // 要构造一个链表， 先初始化有一个节点的链表， 返回值再取next， 扣掉第一个
+        let resultLinkList = new LinkList().init([-1]); // 要构造一个链表， 先初始化有一个节点的链表， 返回值再取next， 扣掉第一个.赋值时用prevHead.next 指向当前节点
         let preHead = resultLinkList;
         while (l1 && l2) {
             if (l1.val <= l2.val) {

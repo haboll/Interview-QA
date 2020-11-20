@@ -13,7 +13,7 @@
 
 */
 
-class LinkListNode {
+class ListNode {
     constructor(element) {
         this.element = element;
         this.next = null;
@@ -28,7 +28,7 @@ class LinkList {
     }
     // 向链表最后添加新元素
     append(element) {
-        const ele = new LinkListNode(element);
+        const ele = new ListNode(element);
         // 空链表
         if (this.head === null) {
             this.head = ele;
@@ -48,7 +48,7 @@ class LinkList {
     insert(position, element) {
         // 处理边界情况
         if (position >= 0 && position <= this._length) {
-            const ele = new LinkListNode(element);
+            const ele = new ListNode(element);
             if (position === 0) {
                 ele.next = this.head;
                 this.head = ele;

@@ -1,4 +1,4 @@
-const Stack = require("./index.js");
+const Stack = require("../index.js");
 
 const input = "()(){}{}[]";
 const obj = {

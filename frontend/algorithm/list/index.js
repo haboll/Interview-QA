@@ -9,7 +9,7 @@
 
 */
 
-class LinkListNode {
+class ListNode {
     constructor(val) {
         this.val = val;
         this.next = null;
@@ -32,7 +32,7 @@ class LinkList {
     }
     // 向链表最后添加新元素
     push(val) {
-        // const ele = new LinkListNode(val);
+        // const ele = new ListNode(val);
         // // 空链表
         // if (this.head === null) {
         //     this.head = ele;
@@ -48,11 +48,11 @@ class LinkList {
         this.insert(this._length, val);
     }
     // 删除链表最后一个
-    unshift() {
+    pop() {
         this.removeAt(this._length);
     }
     // 插入第一个元素
-    pop() {
+    unshift() {
         this.insert(0, val);
     }
     // 删除第一个元素
@@ -63,7 +63,7 @@ class LinkList {
     insert(position, val) {
         // 处理边界情况
         if (position >= 0 && position <= this._length) {
-            const ele = new LinkListNode(val);
+            const ele = new ListNode(val);
             if (position === 0) {
                 ele.next = this.head;
                 this.head = ele;
@@ -109,6 +109,24 @@ class LinkList {
         }
         return false;
     }
+    // 翻转链表
+    reverse() {
+        if(!this.head || !this.head.next){
+            return this.head;
+        }
+        this.prev = this.head;
+        this.current = this.head.next;
+        this.prev.next = null;
+        while(this.current){
+            let next = this.current.next;
+            this.current.next = this.prev;
+            this.prev = this.current;
+            this.current = next;
+        }
+        this.head = this.prev;
+        return this.head;
+    }
+
     indexOf(val) {
         let index = 0;
         this.current = this.head;
@@ -175,7 +193,8 @@ class LinkList {
 // console.log(list.toString());
 // list.insert(3, 'test');
 // console.log(list.toString());
-// list.removeAt(1);
+// //list.removeAt(1);
+// list.reverse();
 // console.log(list.toString());
 
 // console.log(list.indexOf('test'));
@@ -188,4 +207,4 @@ class LinkList {
 //     return !Array.isArray(item);
 // }));
 
-module.exports = { LinkList, LinkListNode };
+module.exports = { LinkList, ListNode };
