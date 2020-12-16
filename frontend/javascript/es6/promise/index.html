@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link href="./index.css"></link>
+  <script type="text/javascript" src="./index.js"></script>
+  <title></title>
+</head>
+<body>
+<noscript>
+</noscript>
+<div id="app"></div></body>
+
+
+<script type="text/javascript" template="1">
+    async function foo() {
+        const awaitReturnValue = await Promise.resolve(2);
+        console.log(awaitReturnValue)
+    }
+    console.log(foo())
+</script>
+
+<script type="text/javascript" template="2">
+    let a = 1;
+    let c = 2;
+    const b = async () => {
+        c = c + 10;
+        a = a + await new Promise((resolve, reject) =>{
+            console.log('promise')
+            setTimeout(() => {resolve(10)}, 10000);
+        });
+        //a = a + await awaitExpression();
+        console.timeEnd('test')
+        console.log(2, a) // 2, 11
+    }
+    b(); 
+    console.log(1, a) // 1, 1
+    console.log(1, c) // 1, 12
+    let d = 100;
+    while(d) {
+        d--;
+        console.log(d)
+    }
+    console.time('test')
+    // b函数执行时, 先正常执行，遇到await表达式之后， 先执行await右边的同步代码。
+    // 执行完后 b 函数就返回一个处于pending状态的Promise。
+    // 然后执行函数外同步代码。
+    // 同步代码与微任务执行结束， 再等待await 接收的Promise对象状态改变抛出值， 再继续执行以后代码。
+
+    function awaitExpression () {
+        console.log('await表达式中的同步函数')
+        return 10;
+    }
+</script>
+
+</html>

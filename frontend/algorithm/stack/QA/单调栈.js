@@ -193,3 +193,49 @@ var largestRectangleArea = function (heights) {
 const heights = [2, 1, 5, 6, 2, 3];
 
 console.log(largestRectangleArea(heights));
+
+
+
+/// 接雨水 *********************************************************************************************************************
+
+
+var trap = function(height) {
+    if(!height || height.lengt < 3){
+        return 0;
+    }
+    let len = height.length;
+
+    for(let i = 0; i< len; i++) {
+
+    }
+
+};
+
+
+var calPoints = function(ops) {
+    let stack = [];
+    let res = 0;
+    for(let i = 0; i< ops.length; i++) {
+        let opsVal = ops[i];
+        if(opsVal === "+") {
+            let value = stack[stack.length -2] + stack[stack.length -1];
+            stack.push(value);
+            res += value;
+        } else if(opsVal === "D"){
+            let value = stack[stack.length -1] * 2;
+            stack.push(value);
+            res += value;
+        } else if(opsVal ==="C") {
+            res -= stack.pop();
+        } else {
+            stack.push(Number(opsVal));
+            res += Number(opsVal);
+        }
+    }
+    return res;
+};
+
+const  a = ["5","2","C","D","+"];
+console.log(calPoints(a))
+
+
